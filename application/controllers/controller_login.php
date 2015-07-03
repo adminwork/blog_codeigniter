@@ -15,7 +15,6 @@ class Controller_login extends CI_Controller {
         public function action_login()
     {
         $this->load->library('session');
-//        $this->load->library('database');
         $login = $this->input->post('username', true);
         $password = $this->input->post('pass');
 
@@ -30,12 +29,11 @@ class Controller_login extends CI_Controller {
                     'username' => $login,
                     'logged_in' => true
                 );
-
     // Добавляем данные в сессию
                 $this->session->set_userdata($authdata);
-
     // Редиректим на нужную нам страницу
-                header('http://localhost/blog_codeigniter/index.php');
+                header('Location: http://localhost/blog_codeigniter/index.php');
+//                exit;
             }
 
     // Если нет то выводим форму авторизации
@@ -46,6 +44,16 @@ class Controller_login extends CI_Controller {
                 $this->load->view('menu_view', $data);
                 $this->load->view('content/login_view', $data);
                 $this->load->view('footer_view');
+            }
+
+            $check_auth = $this->session->userdata('logged_in');
+            if ($check_auth == true) {
+    // Если авторизован
+                echo 'You are log in';
+            }
+            else {
+    // Если нет
+                echo 'You are not log in';
             }
     }
 }
