@@ -1,5 +1,5 @@
 <div>
-    <form action="action_login.php" method="post" id="form" style="padding-left: 200px">
+    <form action="action_login" method="post" id="form" style="padding-left: 200px">
         <div>
             <ul>
                 <li><font>Log in</font></li>

@@ -42,6 +42,7 @@ $route['default_controller'] = "controller_main";
 $route['category/(:num)'] = "controller_categories";
 $route['category/post/(:num)'] = "controller_posts";
 $route['login'] = "controller_login";
+$route['action_login'] = "controller_login/action_login";
 $route['registration'] = "controller_registration";
 $route['404_override'] = '';
 
