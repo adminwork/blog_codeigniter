@@ -7,9 +7,15 @@ class Post_models extends CI_Model
         parent::Model();
     }
 
-    function getAllCategories()
+    function getPostById($id)
     {
-        $query = $this->db->get('categories');
+        $query = $this->db->get_where('post', array('category_id' => $id));
+        return $query->result_array();
+    }
+
+    function getPostByCategoryId($id)
+    {
+        $query = $this->db->get_where('post', array('id' => $id));
         return $query->result_array();
     }
 

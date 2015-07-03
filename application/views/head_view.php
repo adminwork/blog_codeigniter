@@ -16,3 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="js/bootstrap.js"></script>
 </head>
 <body>
+<div class="container" id="container">
+    <div style="float: right" ><a href="login.php" class="btn btn-success">Log in</a></div>
+    <div style="float: right" ><a href="registration.php" class="btn btn-success">Registrahion</a></div>
+    <div class="header"><a href="index.php" ><img src = images/football_1.jpg alt = "Blog of football"></a></div>

@@ -6,10 +6,12 @@ class Controller_categories extends CI_Controller {
 {
         $id = $this->uri->segment(2);
         $this->load->model('category_models');
+          $this->load->model('post_models');
         $data['categories'] =$this->category_models->getAllCategories();
-        $data['arrayCategory'] =$this->category_models->getPostById($id);
-        $this->load->view('head');
-        $this->load->view('categories_view', $data);
-        $this->load->view('footer');
+        $data['arrayCategory'] =$this->post_models->getPostById($id);
+        $this->load->view('head_view');
+        $this->load->view('menu_view', $data);
+        $this->load->view('content/categories_view', $data);
+        $this->load->view('footer_view');
     }
 }
