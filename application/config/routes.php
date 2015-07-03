@@ -38,7 +38,9 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "controller_main";
+$route['category/(:num)'] = "controller_categories";
+$route['category/post/(:num)'] = "controller_posts";
 $route['404_override'] = '';
 
 
