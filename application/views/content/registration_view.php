@@ -1,5 +1,5 @@
 <div>
-    <form action="action_reg.php" method="post" id="form" style="padding-left: 150px; padding-bottom: 60px" >
+    <form action="action_registration" method="post" id="form" style="padding-left: 150px; padding-bottom: 60px" >
         <ul>
             <li>Please fill in the required fields.</li>
             <li>
