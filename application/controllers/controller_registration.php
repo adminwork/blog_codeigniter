@@ -16,7 +16,8 @@ class Controller_registration extends CI_Controller
 
     public function action_registration()
     {
-//        $this->load->library('session');
+
+        $this->load->library('session');
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -28,6 +29,7 @@ class Controller_registration extends CI_Controller
                 $age_user = $this->db->escape($this->input->post('age_user'));
                 $email = $this->db->escape($this->input->post('email'));
 
+                $create_at = date("y-m-d H:i:s");
 
             $this->form_validation->set_rules('first_name', 'First name', 'trim|required|min_length[1]|max_length[20]|xss_clean ');
             $this->form_validation->set_rules('last_name', 'Last name', 'trim|required|min_length[1]|max_length[20]|xss_clean ');
@@ -51,15 +53,25 @@ class Controller_registration extends CI_Controller
             {
                 $this->load->model('action_registration_models','logic');
 
-                        // Если пользователь найден
-                if (@$userdata['username'] == $login and @$userdata['pass'] == $pass) {
-
-                    // Создаем массим с данными сессии
+                if ($this->logic->user_verify($login)){
+                    // Создаем массив с данными сессии и записываем нового пользователя в БД
                     $authdata = array(
                         'username' => $login,
                         'logged_in' => true
                     );
+
                     // Добавляем данные в сессию
+                    $arr = array('id' => "",
+                                'username' => $login,
+                                'pass' => $pass,
+                                'pass_confirm' => $pass_confirm,
+                                'email' => $email,
+                                'age_user' => $age_user,
+                                'create_at' => $create_at,
+                                'update_at' => "",
+                                'first_name' => $first_name,
+                                'last_name' => $last_name,
+                                'avatar' => "");
                     $this->session->set_userdata($authdata);
                     $this->logic->insert('users',$arr);
 
