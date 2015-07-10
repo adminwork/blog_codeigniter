@@ -1,29 +1,37 @@
 <?php
-session_start();
+//session_start();
 
-class Action_login_models extends CI_Model
+class Action_registration_models extends CI_Model
 {
-    function Blogmodel()
+    public function insert($table, $arr)
     {
-        parent::Model();
+        $this->db->insert($table, $arr);
     }
-
-    function getPostById($id)
+    /**
+     * Проверка на существование пользователя в БД
+     */
+    public function user_verify($login)
     {
-        $query = $this->db->get_where('post', array('category_id' => $id));
-        return $query->result_array();
+        $this->db->where('username', $login);
+        $query_check_user = $this->db->get('users');
+        $userdata = $query_check_user->result_array();
+        // Если пользователь с таким логином не найден
+        if ($userdata[0]['username'] != $login){
+            return true; // Пользователя нет, проверка пройдена
+        }else{
+            return false; // Пользователь существует
+        }
     }
-
-    function getPostByCategoryId($id)
+    /**
+     * Функция верификации сессии (залогинен ли юзер?)
+     */
+    public function sess_verify()
     {
-        $query = $this->db->get_where('post', array('id' => $id));
-        return $query->result_array();
-    }
-
-    function getLastFivePosts()
-    {
-        $query = $this->db->get('post', 5);
-        return $query->result_array();
+        $this->load->library('session');
+        $check_auth = $this->session->userdata('logged_in');
+        if ($check_auth != true) {
+            header('Location: index.php?/сReg');
+        }else return true;
     }
 }
 

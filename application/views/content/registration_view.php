@@ -1,6 +1,7 @@
 <div>
     <form action="action_registration" method="post" id="form" style="padding-left: 150px; padding-bottom: 60px" >
         <ul>
+            <?php echo '<li><h1>'.$title.'</h1></li>'; ?>
             <li>Please fill in the required fields.</li>
             <li>
                 <label for="first_name">Name:</label>
